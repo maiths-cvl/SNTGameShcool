@@ -1,42 +1,52 @@
 import pygame
-from player import *
-from fallingDishies import *
+
+from trash import *
+from dishies import *
 
 pygame.init()
 
-WIDHT, HEIGHT = 1080, 720
+WIDTH, HEIGHT = 1080, 720
 
-MAXFPS = 144
-WHITE = (255, 255, 255)
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Dishies Game")
 
-screen = pygame.display.set_mode((WIDHT, HEIGHT))
-pygame.display.set_caption("Fish game you know what")
+greenTrash = Trash("img/greentrash.png", 1, 1, screen)
+greenTrash.setSquare()
 
+redTrash = Trash("img/redtrash.png", 2, 2, screen)
+redTrash.setSquare()
 
-dishie1 = Dishies("trash.png", screen)
-player1 = Player("playerIMG.png", WIDHT/2, HEIGHT-100, screen)
+purpleTrash = Trash("img/purpletrash.png", 3, 3, screen)
+purpleTrash.setSquare()
 
-clock = pygame.time.Clock()
+yellowTrash = Trash("img/yellowtrash.png", 4, 4, screen)
+yellowTrash.setSquare()
+
+trashGroup = pygame.sprite.Group(greenTrash, redTrash, purpleTrash, yellowTrash)
+
+firstDishie = Dishie("img/greendishie.png", 1, screen)
+
 run = True
 
 while run == True:
+    
+    screen.fill((255, 255, 255))
+    
+    trashGroup.draw(screen)
+    firstDishie.update()
 
-    clock.tick(MAXFPS)
-    screen.fill(WHITE)
-
-    player1.handleInput()
-    dishie1.update()
-
-    if player1.rect.colliderect(dishie1):      
-
-        print("collide")
-        
-
-    pressed = pygame.key.get_pressed()
-
+    pygame.draw.rect(screen, (255, 0, 0), greenTrash, 2)
+    pygame.draw.rect(screen, (255, 0, 0), redTrash, 2)
+    pygame.draw.rect(screen, (255, 0, 0), purpleTrash, 2)
+    pygame.draw.rect(screen, (255, 0, 0), yellowTrash, 2)
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-            quit()
 
+        firstDishie.mouseInterraction(event)
+            
+    pygame.display.flip()
     pygame.display.update()
+
+pygame.quit()

@@ -1,0 +1,13 @@
+Main:
+ - Background
+ - Afficher les objects
+ - Collisions
+
+Trash:
+ - Stats (type of trash)
+
+Dishies:
+ - Stats (type of dishie)
+ - RNG Mid location
+ - MouseInterraction (on click event -> coordsDishies = coordsMouse; if: on release event -> coordsDishies in coordsTrash -> add score else: says(wrong trash), remove score)
+ - 
