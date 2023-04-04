@@ -25,6 +25,11 @@ yellowTrash.setSquare()
 trashGroup = pygame.sprite.Group(greenTrash, redTrash, purpleTrash, yellowTrash)
 
 firstDishie = Dishie("img/greendishie.png", 1, screen)
+secondDishie = Dishie("img/seconddishie.png", 1, screen)
+thirdDishie = Dishie("img/thirddishie.png", 1, screen)
+fourthDishie = Dishie("img/fourthdishie.png", 1, screen)
+
+spawnZone = pygame.Rect(int(WIDTH*1/3), int(HEIGHT*1/3), int(WIDTH*1/3), int(HEIGHT*1/3))
 
 run = True
 
@@ -39,6 +44,8 @@ while run == True:
     pygame.draw.rect(screen, (255, 0, 0), redTrash, 2)
     pygame.draw.rect(screen, (255, 0, 0), purpleTrash, 2)
     pygame.draw.rect(screen, (255, 0, 0), yellowTrash, 2)
+
+    pygame.draw.rect(screen, (255, 0, 0), spawnZone, 2)
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
